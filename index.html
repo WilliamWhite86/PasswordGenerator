@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var passwordLength = prompt("Password Length?");
+
+        while (passwordLength < 8 || passwordLength > 128) {
+            alert("Password must be between 8 and 128 characters")
+            passwordLength = prompt("Password Length?");
+        }
+
+        console.log(passwordLength);
+        console.log(typeof passwordLength);
+
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
+        var arrayLength = Array.from({ length: passwordLength }, (v, i) => i);
+        console.log(arrayLength);
+        var i;
+        var newPassword = [];
+        for (i = 0; i < arrayLength.length; i++) {
+            newPassword[i] = Math.floor(Math.random() * 10);
+
+        }
+        console.log(newPassword);
+
+
+
+
+    </script>
+</body>
+
+</html>
