@@ -37,27 +37,47 @@
         //random letter generation
         var alphaObj = { 0: "A", 1: "B", 2: "C" };
         var alphaPasswordArray = [];
-        var alphaArray =[];
+        var alphaPassword =[];
 
         for (i = 0; i < arrayLength.length; i++) {
             alphaPasswordArray[i] = Math.floor(Math.random() * 2);
-            alphaArray += alphaObj[alphaPasswordArray[i]];
+            alphaPassword += alphaObj[alphaPasswordArray[i]];
         }
 
-        alert(alphaArray);
+        alert(alphaPassword);
 
         //random special character generation
         var specialObj ={0: "!", 1: "#", 2:"$"};
         var specialPasswordArray = [];
-        var specialArray = [];
+        var specialPassword = [];
 
         for (i = 0; i < arrayLength.length; i++) {
             specialPasswordArray[i] = Math.floor(Math.random() * 2);
-            specialArray += specialObj[specialPasswordArray[i]];
+            specialPassword += specialObj[specialPasswordArray[i]];
         }
 
-        alert(specialArray);
+        alert(specialPassword);
 
+        //add them all together, parse, re-randomize, divide by 3
+        
+        var totalPassword = numPassword + alphaPassword + specialPassword;
+        alert(totalPassword);
+        var parsedPassword = totalPassword.split("");
+        alert(parsedPassword);
+        console.log(typeof(parsedPassword));
+        var mixedPasswordObj=[];
+        var mixedPassword=[];
+        var finalPassword=[];
+        
+
+        for (i = 0; i < passwordLength; i++){
+            mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);   
+            mixedPassword+=parsedPassword[mixedPasswordObj[i]];
+        }
+
+        alert(mixedPasswordObj);
+        alert(mixedPassword);
+        
     </script>
 </body>
 
