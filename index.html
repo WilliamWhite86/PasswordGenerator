@@ -20,19 +20,43 @@
         console.log(passwordLength);
         console.log(typeof passwordLength);
 
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from - used this to translate user's answer into an array
         var arrayLength = Array.from({ length: passwordLength }, (v, i) => i);
-        console.log(arrayLength);
         var i;
-        var newPassword = [];
+        
+        //random number generation
+        var numPasswordArray = [];
+
         for (i = 0; i < arrayLength.length; i++) {
-            newPassword[i] = Math.floor(Math.random() * 10);
-
+            numPasswordArray[i] = Math.floor(Math.random() * 10);
         }
-        console.log(newPassword);
+        
+        var numPassword = numPasswordArray.join("");
+        alert(numPassword);
 
+        //random letter generation
+        var alphaObj = { 0: "A", 1: "B", 2: "C" };
+        var alphaPasswordArray = [];
+        var alphaArray =[];
 
+        for (i = 0; i < arrayLength.length; i++) {
+            alphaPasswordArray[i] = Math.floor(Math.random() * 2);
+            alphaArray += alphaObj[alphaPasswordArray[i]];
+        }
 
+        alert(alphaArray);
+
+        //random special character generation
+        var specialObj ={0: "!", 1: "#", 2:"$"};
+        var specialPasswordArray = [];
+        var specialArray = [];
+
+        for (i = 0; i < arrayLength.length; i++) {
+            specialPasswordArray[i] = Math.floor(Math.random() * 2);
+            specialArray += specialObj[specialPasswordArray[i]];
+        }
+
+        alert(specialArray);
 
     </script>
 </body>
