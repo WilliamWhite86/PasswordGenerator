@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var myInterval = setInterval(function () {
+            var element = document.createElement("p");
+            element.textContent = "Funnnn";
+            document.body.appendChild(element);
+        }, 1000);
+
+        var myTimeout = setTimeout(function(){
+            var element = document.createElement("h1");
+            element.textContent = "It's been 3 seconds!!!";
+            document.body.appendChild(element);
+        }, 3000);
+    </script>
+</body>
+
+</html>
