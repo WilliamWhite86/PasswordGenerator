@@ -1,4 +1,11 @@
 document.getElementById("generate").addEventListener("click", Generator);
+document.getElementById("copy").addEventListener("click", popCopy);
+
+function popCopy(){
+    var copyPassword = document.getElementById("password");
+    copyPassword.select();
+    document.execCommand("copy");
+}
 
 function Generator(){
     var passwordLength = prompt("Password Length?");
@@ -22,6 +29,7 @@ function Generator(){
     while (wantsSpecial !== "Y" && wantsSpecial !== "N") {
         wantsSpecial = prompt("Answer with Y or N. Special Characters?")
     }
+    
     var specialObj = { 0: "!", 1: "#", 2: "$", 3: "%", 4: "&", 5: "\'", 6: "\(", 7: "\)", 8: "\*", 9: "\+", 10: "\,", 11: "\-", 12: "\.", 13: "\/", 14: "\:", 15: "\;", 16: "\<", 17: "\=", 18: "\>", 19: "\?", 20: "@", 21: "[", 22: "\\", 23: "]", 24: "^", 25: "_", 26: "`", 27: "{", 28: "|", 29: "}", 30: "~" };
     var alphaObj = { 0: "A", 1: "B", 2: "C", 3: "D", 4: "E", 5: "F", 6: "G", 7: "H", 8: "I", 9: "J", 10: "K", 11: "L", 12: "M", 13: "N", 14: "O", 15: "P", 16: "Q", 17: "R", 18: "S", 19: "T", 20: "U", 21: "V", 22: "W", 23: "X", 24: "Y", 25: "Z" };
     var numArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -355,7 +363,18 @@ function Generator(){
             else alert("fail");}}}
 
     ValidatePassword(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial, specialObj, alphaObj, numArray);
+    
+    function insertPassword(password){
+        event.preventDefault();
+        var passwordText = password
+    
+        alert(passwordText);
+        document.querySelector("#password").textContent = passwordText;
+    
+    }
 
-    alert(password);
+    insertPassword(password)
+
+    //alert(password);
     return password;}
 
