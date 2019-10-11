@@ -368,7 +368,7 @@ function Generator(){
         event.preventDefault();
         var passwordText = password
     
-        alert(passwordText);
+        //alert(passwordText);
         document.querySelector("#password").textContent = passwordText;
     
     }
