@@ -1,0 +1,153 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    background: #979b9b;
+}
+
+#outerArea {
+background: #979b9b;
+text-align: center;
+margin: 0 auto;
+padding: 15px;
+font-family: Arial, Helvetica, sans-serif;
+height: 100%;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h2{
+  font-size: 2em;  
+  padding: 15px;
+  text-align: left;
+}
+
+#innerArea {
+    background: #c9cbcb;
+    margin: 20px 50px 20px 50px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    
+}
+
+#password {
+    width: 70%;
+    height: 250px;
+    margin: auto;
+    border: dashed;
+    border-color: grey;
+    text-align: center;
+    font-size: 1em;
+    
+}
+
+#innerArea textarea:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.clearfix::after {
+    content: " ";
+    display: block;
+    clear: both;
+    margin: 0;
+  }
+
+  #generate {
+      width: 20%;
+      margin-right: 10%;
+      height: 45px;
+      background: red;
+      color: white;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      border-radius: 20px;
+      font-size: 1.5em;
+  }
+
+  #innerArea #generate:hover {
+      background: rgba(255,0,0,.5);
+  }
+
+  #innerArea #copy:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+  #copy {
+      width: 20%;
+      height: 45px;
+      margin-top: 20px; 
+      margin-bottom: 10px;     
+      border-radius: 20px;
+      font-size: 1.5em;
+  }
+
+  #buttons {
+      margin: auto;
+
+  }
+
+  @media screen and (max-width: 1220px){
+    
+    #innerArea {
+        margin: 25px 100px 20px 100px; 
+    }
+
+    h1 {
+        font-size: 3.5em;
+    }
+
+    #generate {
+        font-size: 1em;
+    }
+
+    #copy {
+        font-size: 1em;
+    }
+
+
+    #password {
+        height: 200px;
+    }
+
+  }
+
+  @media screen and (max-width: 768px){
+    
+    #innerArea {
+        margin: 25px 75px 20px 75px; 
+    }
+
+    #password {
+        font-size: .75em;
+    }
+
+  }
+
+  @media screen and (max-width: 640px){
+        
+    #innerArea {
+        margin: 25px 75px 20px 75px; 
+    }
+
+    #buttons {
+        font-size: .5em;
+    }
+
+    #copy {
+        height: 30px;
+    }
+
+    #generate {
+        height: 30px;
+    }
+    #password {
+        font-size: .5em;
+    }
+    h2 {
+        text-align: center;
+    }
+
+  }
