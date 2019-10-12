@@ -9,25 +9,60 @@ function popCopy(){
 
 function Generator(){
     var passwordLength = prompt("Password Length?");
-
+    if (passwordLength === null){
+        return;
+    }
     while (passwordLength < 8 || passwordLength > 128) {
         passwordLength = prompt("Password must be between 8 and 128 characters. Password Length?");
+        if (passwordLength === null) {
+            return;
+        }
     }
     var wantsNumber = prompt("Numbers?");
+    if (wantsNumber === null){
+        return;
+    }
     while (wantsNumber !== "Y" && wantsNumber !== "N") {
         wantsNumber = prompt("Answer with Y or N. Numbers?");
+        if (wantsNumber === null){
+            return;
+        }
     }
     var wantsAlpha = prompt("Uppercase Letters?");
+    if (wantsAlpha === null){
+        return;
+    }
     while (wantsAlpha !== "Y" && wantsAlpha !== "N") {
         wantsAlpha = prompt("Answer with Y or N. Uppercase Letters?");
+        if (wantsAlpha === null){
+            return;
+        }
     }
     var wantsLowerAlpha = prompt("Lowercase Letters?");
+    if (wantsLowerAlpha === null){
+        return;
+    }
     while (wantsLowerAlpha !== "Y" && wantsLowerAlpha !== "N") {
         wantsLowerAlpha = prompt("Answer with Y or N. Uppercase Letters?");
+        if (wantsLowerAlpha === null){
+            return;
+        }
     }
     var wantsSpecial = prompt("Special Characters?");
+    if (wantsSpecial === null){
+        return;
+    }
     while (wantsSpecial !== "Y" && wantsSpecial !== "N") {
         wantsSpecial = prompt("Answer with Y or N. Special Characters?")
+        if (wantsSpecial === null){
+            return;
+        }
+    }
+
+    if (wantsNumber === "N" && wantsAlpha === "N" && wantsLowerAlpha === "N" && wantsSpecial === "N"){
+        alert("You must choose one");
+        Generator();
+    
     }
     
     var specialObj = { 0: "!", 1: "#", 2: "$", 3: "%", 4: "&", 5: "\'", 6: "\(", 7: "\)", 8: "\*", 9: "\+", 10: "\,", 11: "\-", 12: "\.", 13: "\/", 14: "\:", 15: "\;", 16: "\<", 17: "\=", 18: "\>", 19: "\?", 20: "@", 21: "[", 22: "\\", 23: "]", 24: "^", 25: "_", 26: "`", 27: "{", 28: "|", 29: "}", 30: "~" };
