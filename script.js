@@ -105,7 +105,6 @@ function Generator() {
             lowerAlphaPassword += alphaObj[alphaPasswordArray[i]];
             lowerAlphaPassword = lowerAlphaPassword.toLowerCase();
         }
-        console.log(lowerAlphaPassword);
 
 
         //random special character generation
@@ -178,7 +177,6 @@ function Generator() {
             //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
             //alert(parsedPassword);
-            console.log(typeof (parsedPassword));
             var mixedPasswordObj = [];
             var mixedPassword = [];
             var finalPassword = [];
@@ -197,7 +195,6 @@ function Generator() {
             //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
             //alert(parsedPassword);
-            console.log(typeof (parsedPassword));
             var mixedPasswordObj = [];
             var mixedPassword = [];
             var finalPassword = [];
@@ -216,7 +213,6 @@ function Generator() {
             //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
             //alert(parsedPassword);
-            console.log(typeof (parsedPassword));
             var mixedPasswordObj = [];
             var mixedPassword = [];
             var finalPassword = [];
@@ -235,7 +231,6 @@ function Generator() {
             //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
             //alert(parsedPassword);
-            console.log(typeof (parsedPassword));
             var mixedPasswordObj = [];
             var mixedPassword = [];
             var finalPassword = [];
@@ -254,7 +249,6 @@ function Generator() {
             //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
             //alert(parsedPassword);
-            console.log(typeof (parsedPassword));
             var mixedPasswordObj = [];
             var mixedPassword = [];
             var finalPassword = [];
@@ -273,7 +267,6 @@ function Generator() {
             //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
             //alert(parsedPassword);
-            console.log(typeof (parsedPassword));
             var mixedPasswordObj = [];
             var mixedPassword = [];
             var finalPassword = [];
@@ -292,7 +285,6 @@ function Generator() {
             //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
             //alert(parsedPassword);
-            console.log(typeof (parsedPassword));
             var mixedPasswordObj = [];
             var mixedPassword = [];
             var finalPassword = [];
@@ -311,7 +303,6 @@ function Generator() {
             //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
             //alert(parsedPassword);
-            console.log(typeof (parsedPassword));
             var mixedPasswordObj = [];
             var mixedPassword = [];
             var finalPassword = [];
@@ -330,7 +321,6 @@ function Generator() {
             //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
             //alert(parsedPassword);
-            console.log(typeof (parsedPassword));
             var mixedPasswordObj = [];
             var mixedPassword = [];
             var finalPassword = [];
@@ -351,7 +341,6 @@ function Generator() {
             //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
             //alert(parsedPassword);
-            console.log(typeof (parsedPassword));
             var mixedPasswordObj = [];
             var mixedPassword = [];
             var finalPassword = [];
@@ -373,23 +362,32 @@ function Generator() {
 
     function ValidatePassword() {
         var passHas = false
-        if (wantsNumber === "Y") {
-            alert(numArray);
-            for (i = 0; i < numArray.length; i++) {
-                if (password.includes(numArray[i])) {
-                    passHas = true;
-                }
-            }
-        }
-        if (passHas == false); {
-            alert("false");
-            Randomizer();
-        }
-        if (passHas == true) {
-            (alert("true"));
-        }
+        console.log(password);
+        while (passHas === false) {
+            if (wantsNumber === "Y") {
+                //alert(numArray);
+                for (i = 0; i < numArray.length; i++) {
+                    if (password.includes(numArray[i])) {
+                        passHas = true;
+                        alert("haspass");
+                        return;
+                    }
+
+                    //else (alert("nopass"))}
+                    else (Randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial))}}}}
+            
+
+            //if (passHas === true) {
+                //alert("true");
+           // }
+            //else {
+                //{
+                    //alert("false");
+                    //Randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial);
+                    //console.log(Randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial));
+                //}
+            //}
         
-    }
 
     ValidatePassword(password);
 
