@@ -12,7 +12,7 @@ function Generator() {
     if (passwordLength === null) {
         return;
     }
-    while (passwordLength < 1 || passwordLength > 128) {
+    while (passwordLength < 8 || passwordLength > 128) {
         passwordLength = prompt("Password must be between 8 and 128 characters. Password Length?");
         if (passwordLength === null) {
             return;
@@ -68,8 +68,11 @@ function Generator() {
     var specialObj = { 0: "!", 1: "#", 2: "$", 3: "%", 4: "&", 5: "\'", 6: "\(", 7: "\)", 8: "\*", 9: "\+", 10: "\,", 11: "\-", 12: "\.", 13: "\/", 14: "\:", 15: "\;", 16: "\<", 17: "\=", 18: "\>", 19: "\?", 20: "@", 21: "[", 22: "\\", 23: "]", 24: "^", 25: "_", 26: "`", 27: "{", 28: "|", 29: "}", 30: "~" };
     var alphaObj = { 0: "A", 1: "B", 2: "C", 3: "D", 4: "E", 5: "F", 6: "G", 7: "H", 8: "I", 9: "J", 10: "K", 11: "L", 12: "M", 13: "N", 14: "O", 15: "P", 16: "Q", 17: "R", 18: "S", 19: "T", 20: "U", 21: "V", 22: "W", 23: "X", 24: "Y", 25: "Z" };
     var numArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    var alphaArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","0","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    var lowerAlphaArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    var specialArray = ["!","#","$","%","&","\'","\(","\)","\*","\+","\,","\-","\.","\/","\:","\;","\<","\=","\>","\?","@","[","\\","]","^","_","`","{","|","}","~" ];
 
-    function Randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial) {
+    function randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial) {
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from - used this to translate user's answer into an array
         var arrayLength = Array.from({ length: passwordLength }, (v, i) => i);
         var i;
@@ -355,41 +358,59 @@ function Generator() {
             //alert(mixedPassword);
         }
     }
+    var passValidates = false;
+    var password;
+    while (passValidates === false) {
+        password = randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial);
+        var hasNumber = false;
+        var hasAlpha = false;
+        var hasLowerAlpha = false;
+        var hasSpecial = false;
 
-    Randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial);
+        if (wantsNumber === "Y") {
+            for (i = 0; i < numArray.length; i++) {
+                if (password.includes(numArray[i])) {
+                    hasNumber = true;
+                }
+            }
+        }
 
-    var password = Randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial);
+        if (wantsAlpha === "Y") {
+            for (i = 0; i < alphaArray.length; i++) {
+                if (password.includes(alphaArray[i])) {
+                    hasAlpha = true;
+                }
+            }
 
-    function ValidatePassword() {
-        var passHas = false
+        }
+
+
+        if (wantsLowerAlpha === "Y") {
+            for (i = 0; i < lowerAlphaArray.length; i++) {
+                if (password.includes(lowerAlphaArray[i])) {
+                    hasLowerAlpha = true;
+                }
+            }
+
+        }
+
+        if (wantsSpecial === "Y") {
+            for (i = 0; i < specialArray.length; i++) {
+                if (password.includes(specialArray[i])) {
+                    hasSpecial = true;
+                }
+            }
+
+        }
+
+        if ((wantsNumber === "Y" && hasNumber === true) && (wantsAlpha === "Y" && hasAlpha === true) && (wantsLowerAlpha === "Y" && hasLowerAlpha === true) && (wantsSpecial === "Y" && hasSpecial === true)) {
+            passValidates = true;
+
+        }
         console.log(password);
-        while (passHas === false) {
-            if (wantsNumber === "Y") {
-                //alert(numArray);
-                for (i = 0; i < numArray.length; i++) {
-                    if (password.includes(numArray[i])) {
-                        passHas = true;
-                        alert("haspass");
-                        return;
-                    }
+    }
 
-                    //else (alert("nopass"))}
-                    else (Randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial))}}}}
-            
 
-            //if (passHas === true) {
-                //alert("true");
-           // }
-            //else {
-                //{
-                    //alert("false");
-                    //Randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial);
-                    //console.log(Randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial));
-                //}
-            //}
-        
-
-    ValidatePassword(password);
 
     function insertPassword(password) {
         event.preventDefault();

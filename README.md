@@ -16,7 +16,7 @@ This application uses javascript to randomly generate a password between 8 and 1
 
  * To submit bug reports and feature suggestions, please go to my contact page: https://williamwhite86.github.io/Responsive-Portfolio/contact.html
 
-* Link to app screenshot: ![Alt text](/assets/pwScreenshot.jpg?raw=true "PW Generator")
+* Link to app screenshot: ![pwScreenshot](/assets/pwScreenshot.jpg?raw=true "PW Generator")
 
 This project made possible through the UNH Coding Bootcamp
 
