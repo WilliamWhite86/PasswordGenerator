@@ -17,7 +17,7 @@ function Generator() {
     if (passwordLength === null) {
         return;
     }
-    while (passwordLength < 8 || passwordLength > 128) {
+    while (passwordLength < 3 || passwordLength > 128) {
         passwordLength = prompt("Password must be between 8 and 128 characters. Password Length?");
         if (passwordLength === null) {
             return;
@@ -241,7 +241,6 @@ function Generator() {
             var parsedPassword = totalPassword.split("");
             var mixedPasswordObj = [];
             var mixedPassword = [];
-            var finalPassword = [];
 
             for (i = 0; i < passwordLength; i++) {
                 mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
@@ -281,6 +280,7 @@ function Generator() {
     var password;
     while (passValidates === false) {
         password = randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial);
+        console.log(password);
         var hasNumber = false;
         var hasAlpha = false;
         var hasLowerAlpha = false;
@@ -322,12 +322,37 @@ function Generator() {
 
         }
 
-        if ((wantsNumber === "Y" && hasNumber === true) && (wantsAlpha === "Y" && hasAlpha === true) && (wantsLowerAlpha === "Y" && hasLowerAlpha === true) && (wantsSpecial === "Y" && hasSpecial === true)) {
-            passValidates = true;
+        function checker(){
+            if (wantsNumber === "Y" && hasNumber === true){
+                passValidates = true;
+            } 
+            else if (wantsNumber === "Y" && hasNumber === false){
+                return;
+            }
+            
+            if (wantsAlpha === "Y" && hasAlpha === true){
+                passValidates = true;
+            }
+            else if (wantsAlpha === "Y" && hasAlpha === false){
+                return passValidates = false;
+            }
 
+            if (wantsLowerAlpha === "Y" && hasLowerAlpha === true){
+                passValidates = true;
+            }
+            else if (wantsLowerAlpha === "Y" && hasLowerAlpha === false){
+                return passValidates = false;
+            }
+
+            if (wantsSpecial === "Y" && hasSpecial === true){
+                passValidates = true;
+            }
+            else if (wantsSpecial === "Y" && hasSpecial === false){
+                passValidates = false;
+            }
         }
+        checker()
     }
-
 
     // This is where we insert the generated password onto the page within the password id
 
