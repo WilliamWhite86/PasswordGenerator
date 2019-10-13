@@ -1,11 +1,16 @@
+//Event listeners waiting for clicks
+
 document.getElementById("generate").addEventListener("click", Generator);
 document.getElementById("copy").addEventListener("click", popCopy);
+
+//Where we copy to clipboard
 
 function popCopy() {
     var copyPassword = document.getElementById("password");
     copyPassword.select();
     document.execCommand("copy");
 }
+// The main function that generates the random password, starting with prompt questions
 
 function Generator() {
     var passwordLength = prompt("Password Length?");
@@ -65,6 +70,8 @@ function Generator() {
 
     }
 
+    //Variables used in password genration. I recreated the 'objs' as arrays in order to validate all elements requested are in the password
+
     var specialObj = { 0: "!", 1: "#", 2: "$", 3: "%", 4: "&", 5: "\'", 6: "\(", 7: "\)", 8: "\*", 9: "\+", 10: "\,", 11: "\-", 12: "\.", 13: "\/", 14: "\:", 15: "\;", 16: "\<", 17: "\=", 18: "\>", 19: "\?", 20: "@", 21: "[", 22: "\\", 23: "]", 24: "^", 25: "_", 26: "`", 27: "{", 28: "|", 29: "}", 30: "~" };
     var alphaObj = { 0: "A", 1: "B", 2: "C", 3: "D", 4: "E", 5: "F", 6: "G", 7: "H", 8: "I", 9: "J", 10: "K", 11: "L", 12: "M", 13: "N", 14: "O", 15: "P", 16: "Q", 17: "R", 18: "S", 19: "T", 20: "U", 21: "V", 22: "W", 23: "X", 24: "Y", 25: "Z" };
     var numArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -73,7 +80,7 @@ function Generator() {
     var specialArray = ["!","#","$","%","&","\'","\(","\)","\*","\+","\,","\-","\.","\/","\:","\;","\<","\=","\>","\?","@","[","\\","]","^","_","`","{","|","}","~" ];
 
     function randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial) {
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from - used this to translate user's answer into an array
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from - used this to translate user's answer into an array - arrayLength. I'm don't fully understand how this is working.
         var arrayLength = Array.from({ length: passwordLength }, (v, i) => i);
         var i;
 
@@ -85,7 +92,6 @@ function Generator() {
         }
 
         var numPassword = numPasswordArray.join("");
-        //alert(numPassword);
 
         //random uppercase letter generation
 
@@ -97,9 +103,8 @@ function Generator() {
             alphaPassword += alphaObj[alphaPasswordArray[i]];
         }
 
-        //alert(alphaPassword);
-
         //random lowercase letter generation
+        
         var lowerAlphaPasswordArray = [];
         var lowerAlphaPassword = [];
 
@@ -120,192 +125,120 @@ function Generator() {
             specialPassword += specialObj[specialPasswordArray[i]];
         }
 
-        //alert(specialPassword);
-
-        //add them all together, parse, re-randomize, divide
-        //var totalPassword = numPassword + alphaPassword + specialPassword + lowerAlphaPassword
-        //alert(totalPassword);
-        //var parsedPassword = totalPassword.split("");
-        //alert(parsedPassword);
-        //console.log(typeof (parsedPassword));
-        //var mixedPasswordObj = [];
-        //var mixedPassword = [];
-        //var finalPassword = [];
-
-        //for (i = 0; i < passwordLength; i++) {
-        //mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
-        //mixedPassword += parsedPassword[mixedPasswordObj[i]];
-        //}
-
-        //alert(mixedPasswordObj);
-        //alert(mixedPassword);
+        //Returning password combos based on what user wants
 
         if (wantsNumber === "Y" && wantsAlpha === "N" && wantsLowerAlpha === "N" && wantsSpecial === "N") {
             return numPassword;
-            //alert(numPassword);
         }
         else if (wantsAlpha === "Y" && wantsNumber === "N" && wantsLowerAlpha === "N" && wantsSpecial === "N") {
             return alphaPassword;
-            //alert(alphaPassword);
         }
         else if (wantsLowerAlpha === "Y" && wantsAlpha === "N" && wantsNumber === "N" && wantsSpecial === "N") {
             return lowerAlphaPassword;
-            //alert(lowerAlphaPassword);
         }
         else if (wantsSpecial === "Y" && wantsNumber === "N" && wantsAlpha === "N" && wantsLowerAlpha === "N") {
             return specialPassword;
-            //alert(specialPassword);
         }
         else if (wantsSpecial === "Y" && wantsNumber === "Y" && wantsAlpha === "N" && wantsLowerAlpha === "N") {
+            
             var totalPassword = numPassword + specialPassword
-            //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
-            //alert(parsedPassword);
-            //console.log(typeof (parsedPassword));
             var mixedPasswordObj = [];
             var mixedPassword = [];
-            var finalPassword = [];
 
             for (i = 0; i < passwordLength; i++) {
                 mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
                 mixedPassword += parsedPassword[mixedPasswordObj[i]];
             }
-
-            //alert(mixedPasswordObj);
             return mixedPassword;
-            //alert(mixedPassword);
         }
         else if (wantsSpecial === "N" && wantsNumber === "Y" && wantsAlpha === "Y" && wantsLowerAlpha === "N") {
             var totalPassword = numPassword + alphaPassword
-            //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
-            //alert(parsedPassword);
             var mixedPasswordObj = [];
             var mixedPassword = [];
-            var finalPassword = [];
 
             for (i = 0; i < passwordLength; i++) {
                 mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
                 mixedPassword += parsedPassword[mixedPasswordObj[i]];
             }
-
-            //alert(mixedPasswordObj);
             return mixedPassword;
-            //alert(mixedPassword);
         }
         else if (wantsSpecial === "N" && wantsNumber === "N" && wantsAlpha === "Y" && wantsLowerAlpha === "Y") {
             var totalPassword = alphaPassword + lowerAlphaPassword
-            //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
-            //alert(parsedPassword);
             var mixedPasswordObj = [];
             var mixedPassword = [];
-            var finalPassword = [];
 
             for (i = 0; i < passwordLength; i++) {
                 mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
                 mixedPassword += parsedPassword[mixedPasswordObj[i]];
             }
-
-            //alert(mixedPasswordObj);
             return mixedPassword;
-            //alert(mixedPassword);
         }
         else if (wantsSpecial === "N" && wantsNumber === "Y" && wantsAlpha === "N" && wantsLowerAlpha === "Y") {
             var totalPassword = numPassword + lowerAlphaPassword
-            //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
-            //alert(parsedPassword);
             var mixedPasswordObj = [];
             var mixedPassword = [];
-            var finalPassword = [];
 
             for (i = 0; i < passwordLength; i++) {
                 mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
                 mixedPassword += parsedPassword[mixedPasswordObj[i]];
             }
-
-            //alert(mixedPasswordObj);
             return mixedPassword;
-            //alert(mixedPassword);
         }
         else if (wantsSpecial === "Y" && wantsNumber === "N" && wantsAlpha === "Y" && wantsLowerAlpha === "N") {
             var totalPassword = specialPassword + alphaPassword
-            //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
-            //alert(parsedPassword);
             var mixedPasswordObj = [];
             var mixedPassword = [];
-            var finalPassword = [];
 
             for (i = 0; i < passwordLength; i++) {
                 mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
                 mixedPassword += parsedPassword[mixedPasswordObj[i]];
             }
-
-            //alert(mixedPasswordObj);
             return mixedPassword;
-            //alert(mixedPassword);
         }
         else if (wantsSpecial === "Y" && wantsNumber === "N" && wantsAlpha === "N" && wantsLowerAlpha === "Y") {
             var totalPassword = lowerAlphaPassword + specialPassword
-            //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
-            //alert(parsedPassword);
             var mixedPasswordObj = [];
             var mixedPassword = [];
-            var finalPassword = [];
 
             for (i = 0; i < passwordLength; i++) {
                 mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
                 mixedPassword += parsedPassword[mixedPasswordObj[i]];
             }
-
-            //alert(mixedPasswordObj);
             return mixedPassword;
-            //alert(mixedPassword);
         }
         else if (wantsSpecial === "Y" && wantsNumber === "Y" && wantsAlpha === "Y" && wantsLowerAlpha === "N") {
             var totalPassword = specialPassword + numPassword + alphaPassword
-            //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
-            //alert(parsedPassword);
             var mixedPasswordObj = [];
             var mixedPassword = [];
-            var finalPassword = [];
 
             for (i = 0; i < passwordLength; i++) {
                 mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
                 mixedPassword += parsedPassword[mixedPasswordObj[i]];
             }
-
-            //alert(mixedPasswordObj);
             return mixedPassword;
-            //alert(mixedPassword);
         }
         else if (wantsSpecial === "Y" && wantsNumber === "Y" && wantsAlpha === "N" && wantsLowerAlpha === "Y") {
             var totalPassword = specialPassword + numPassword + lowerAlphaPassword
-            //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
-            //alert(parsedPassword);
             var mixedPasswordObj = [];
             var mixedPassword = [];
-            var finalPassword = [];
 
             for (i = 0; i < passwordLength; i++) {
                 mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
                 mixedPassword += parsedPassword[mixedPasswordObj[i]];
             }
-
-            //alert(mixedPasswordObj);
             return mixedPassword;
-            //alert(mixedPassword);
         }
         else if (wantsSpecial === "Y" && wantsNumber === "N" && wantsAlpha === "Y" && wantsLowerAlpha === "Y") {
             var totalPassword = specialPassword + alphaPassword + lowerAlphaPassword
-            //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
-            //alert(parsedPassword);
             var mixedPasswordObj = [];
             var mixedPassword = [];
             var finalPassword = [];
@@ -314,50 +247,36 @@ function Generator() {
                 mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
                 mixedPassword += parsedPassword[mixedPasswordObj[i]];
             }
-
-            //alert(mixedPasswordObj);
             return mixedPassword;
-            //alert(mixedPassword);
         }
         else if (wantsSpecial === "N" && wantsNumber === "Y" && wantsAlpha === "Y" && wantsLowerAlpha === "Y") {
             var totalPassword = numPassword + alphaPassword + lowerAlphaPassword
-            //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
-            //alert(parsedPassword);
             var mixedPasswordObj = [];
             var mixedPassword = [];
-            var finalPassword = [];
 
             for (i = 0; i < passwordLength; i++) {
                 mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
                 mixedPassword += parsedPassword[mixedPasswordObj[i]];
             }
-
-            //alert(mixedPasswordObj);
             return mixedPassword;
-            //alert(mixedPassword);
-
-
         }
         else {
             var totalPassword = numPassword + alphaPassword + specialPassword + lowerAlphaPassword
-            //alert(totalPassword);
             var parsedPassword = totalPassword.split("");
-            //alert(parsedPassword);
             var mixedPasswordObj = [];
             var mixedPassword = [];
-            var finalPassword = [];
 
             for (i = 0; i < passwordLength; i++) {
                 mixedPasswordObj[i] = Math.floor(Math.random() * parsedPassword.length);
                 mixedPassword += parsedPassword[mixedPasswordObj[i]];
             }
-
-            //alert(mixedPasswordObj);
             return mixedPassword;
-            //alert(mixedPassword);
         }
     }
+
+    //this is where we make sure the random password has everthing the user asked for. I got help on this from Dave and Peter.
+
     var passValidates = false;
     var password;
     while (passValidates === false) {
@@ -407,23 +326,18 @@ function Generator() {
             passValidates = true;
 
         }
-        console.log(password);
     }
 
 
+    //This is where we insert the generated password onto the page within the password id
 
     function insertPassword(password) {
         event.preventDefault();
         var passwordText = password
-
-        //alert(passwordText);
         document.querySelector("#password").textContent = passwordText;
-
     }
-
     insertPassword(password)
 
-    //alert(password);
     return password;
 }
 
