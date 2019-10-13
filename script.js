@@ -1,9 +1,9 @@
-//Event listeners waiting for clicks
+// Event listeners waiting for clicks
 
 document.getElementById("generate").addEventListener("click", Generator);
 document.getElementById("copy").addEventListener("click", popCopy);
 
-//Where we copy to clipboard
+// Where we copy to clipboard
 
 function popCopy() {
     var copyPassword = document.getElementById("password");
@@ -70,7 +70,7 @@ function Generator() {
 
     }
 
-    //Variables used in password genration. I recreated the 'objs' as arrays in order to validate all elements requested are in the password
+    // Variables used in password genration. I recreated the 'objs' as arrays in order to validate all elements requested are in the password
 
     var specialObj = { 0: "!", 1: "#", 2: "$", 3: "%", 4: "&", 5: "\'", 6: "\(", 7: "\)", 8: "\*", 9: "\+", 10: "\,", 11: "\-", 12: "\.", 13: "\/", 14: "\:", 15: "\;", 16: "\<", 17: "\=", 18: "\>", 19: "\?", 20: "@", 21: "[", 22: "\\", 23: "]", 24: "^", 25: "_", 26: "`", 27: "{", 28: "|", 29: "}", 30: "~" };
     var alphaObj = { 0: "A", 1: "B", 2: "C", 3: "D", 4: "E", 5: "F", 6: "G", 7: "H", 8: "I", 9: "J", 10: "K", 11: "L", 12: "M", 13: "N", 14: "O", 15: "P", 16: "Q", 17: "R", 18: "S", 19: "T", 20: "U", 21: "V", 22: "W", 23: "X", 24: "Y", 25: "Z" };
@@ -80,11 +80,11 @@ function Generator() {
     var specialArray = ["!","#","$","%","&","\'","\(","\)","\*","\+","\,","\-","\.","\/","\:","\;","\<","\=","\>","\?","@","[","\\","]","^","_","`","{","|","}","~" ];
 
     function randomizer(passwordLength, wantsNumber, wantsAlpha, wantsLowerAlpha, wantsSpecial) {
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from - used this to translate user's answer into an array - arrayLength. I'm don't fully understand how this is working.
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from - Used this to translate user's answer into an array - arrayLength. I'm don't fully understand how this is working.
         var arrayLength = Array.from({ length: passwordLength }, (v, i) => i);
         var i;
 
-        //random number generation
+        // Random number generation
         var numPasswordArray = [];
 
         for (i = 0; i < arrayLength.length; i++) {
@@ -93,7 +93,7 @@ function Generator() {
 
         var numPassword = numPasswordArray.join("");
 
-        //random uppercase letter generation
+        // Random uppercase letter generation
 
         var alphaPasswordArray = [];
         var alphaPassword = [];
@@ -103,7 +103,7 @@ function Generator() {
             alphaPassword += alphaObj[alphaPasswordArray[i]];
         }
 
-        //random lowercase letter generation
+        // Random lowercase letter generation
         
         var lowerAlphaPasswordArray = [];
         var lowerAlphaPassword = [];
@@ -115,7 +115,7 @@ function Generator() {
         }
 
 
-        //random special character generation
+        // Random special character generation
 
         var specialPasswordArray = [];
         var specialPassword = [];
@@ -125,7 +125,7 @@ function Generator() {
             specialPassword += specialObj[specialPasswordArray[i]];
         }
 
-        //Returning password combos based on what user wants
+        // Returning password combos based on what user wants
 
         if (wantsNumber === "Y" && wantsAlpha === "N" && wantsLowerAlpha === "N" && wantsSpecial === "N") {
             return numPassword;
@@ -275,7 +275,7 @@ function Generator() {
         }
     }
 
-    //this is where we make sure the random password has everthing the user asked for. I got help on this from Dave and Peter.
+    // This is where we make sure the random password has everthing the user asked for. I got help on this from Dave and Peter.
 
     var passValidates = false;
     var password;
@@ -329,7 +329,7 @@ function Generator() {
     }
 
 
-    //This is where we insert the generated password onto the page within the password id
+    // This is where we insert the generated password onto the page within the password id
 
     function insertPassword(password) {
         event.preventDefault();
