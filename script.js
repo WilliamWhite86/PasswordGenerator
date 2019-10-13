@@ -17,7 +17,7 @@ function Generator() {
     if (passwordLength === null) {
         return;
     }
-    while (passwordLength < 3 || passwordLength > 128) {
+    while (passwordLength < 8 || passwordLength > 128) {
         passwordLength = prompt("Password must be between 8 and 128 characters. Password Length?");
         if (passwordLength === null) {
             return;
